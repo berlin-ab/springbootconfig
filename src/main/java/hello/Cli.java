@@ -4,22 +4,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Arrays;
+
 @Component
 public class Cli implements CommandLineRunner {
 
-    @Value("${simpleValue}")
-    private String simpleValue;
-
-    @Value("${nested.nestedValue}")
-    private String nestedValue;
-
-    @Value("${nested.otherNestedValue}")
-    private String otherNestedValue;
+    @Value("${listOfValues}")
+    private String[] listOfValues;
 
     public void run(String... args) {
-        System.out.println(simpleValue);
-        System.out.println(nestedValue);
-        System.out.println(otherNestedValue);
-    }
+        System.out.println(listOfValues[0]);
+        System.out.println(listOfValues[1]);
 
+        List<String> list = Arrays.asList(listOfValues);
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+    }
 }
